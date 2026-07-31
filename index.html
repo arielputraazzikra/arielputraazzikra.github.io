@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio - Ariel Putra Az Zikra</title>
+  <style>
+    :root {
+      --primary-yellow: #E2A838;
+      --accent-gradient: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%);
+      --glow-yellow: rgba(245, 158, 11, 0.4);
+      --glow-bright: rgba(245, 158, 11, 0.7);
+      --text-dark: #111827;
+      --text-muted: #4B5563;
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --card-border: rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-image: url('https://i.imghippo.com/files/OgVW7740HG.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: var(--text-dark);
+      padding: 30px 15px 80px 15px;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR / TASKBAR ATAS (ULTRA PREMIUM & MODERN) */
+    .top-navbar {
+      position: sticky;
+      top: 15px;
+      z-index: 1000;
+      max-width: 1000px;
+      margin: 0 auto 30px auto;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 22px;
+      padding: 10px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .top-navbar:hover {
+      box-shadow: 0 20px 45px rgba(245, 158, 11, 0.15), inset 0 1px 2px rgba(255, 255, 255, 1);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-brand-badge {
+      width: 34px;
+      height: 34px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.95rem;
+      color: #000;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .nav-brand:hover .nav-brand-badge {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .nav-brand-text {
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #111827 30%, #B45309 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 6px;
+      list-style: none;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.04);
+      padding: 4px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-menu li a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding: 7px 16px;
+      border-radius: 10px;
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      display: inline-block;
+    }
+
+    .nav-menu li a:hover {
+      background: #FFFFFF;
+      color: #B45309;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      transform: translateY(-1px);
+    }
+
+    /* TOMBOL SCROLL TO TOP FLOATING DI KANAN BAWAH */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 45px;
+      height: 45px;
+      background: var(--accent-gradient);
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 900;
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .scroll-top-btn.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-top-btn:hover {
+      transform: translateY(-5px) scale(1.08);
+      box-shadow: 0 12px 30px var(--glow-bright);
+      background: #111827;
+      color: #F59E0B;
+    }
+
+    .portfolio-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .slide {
+      background-image: url('https://i.imghippo.com/files/OgVW7740HG.jpg');
+      background-size: cover;
+      background-position: center;
+      border-radius: 24px;
+      padding: 40px 45px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      color: var(--text-dark);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    /* KHUSUS HALAMAN 1 & 7 BACKGROUND DIGANTI */
+    #slide-home, #slide-contact {
+      background-image: url('https://i.imghippo.com/files/hlvg9284qPI.jpg');
+    }
+
+    .slide:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+    }
+
+    .interactive-photo {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      background: #000;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      border: 2px solid transparent;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                  box-shadow 0.4s ease, 
+                  border-color 0.4s ease;
+    }
+
+    .interactive-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
+    }
+
+    .interactive-photo::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      transition: left 0.8s ease;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .interactive-photo:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px var(--glow-yellow);
+      border-color: #F59E0B;
+    }
+
+    .interactive-photo:hover img {
+      transform: scale(1.12);
+      filter: brightness(1.05);
+    }
+
+    .interactive-photo:hover::after {
+      left: 150%;
+    }
+
+    @keyframes slideInFromLeft {
+      0% {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .animate-slide-left {
+      animation: slideInFromLeft 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* SLIDE 1: DEFAULT DESKTOP */
+    .slide-1-container {
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 15px;
+    }
+
+    .hero-text-content {
+      position: relative;
+      z-index: 5;
+      padding-left: 0;
+      max-width: 60%;
+    }
+
+    .hero-badge-group {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .hero-badge-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--accent-gradient);
+      border-radius: 6px;
+      z-index: 1;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .hero-badge-text {
+      position: relative;
+      z-index: 3;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #000;
+      line-height: 1.1;
+      padding: 2px 10px;
+    }
+
+    .hero-title-main {
+      position: relative;
+      z-index: 5;
+      font-size: 5rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: #000;
+      line-height: 0.95;
+      margin-top: 4px;
+      margin-bottom: 18px;
+    }
+
+    .animated-line-container {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 2px;
+      background-color: rgba(0, 0, 0, 0.15);
+      margin-bottom: 22px;
+      overflow: hidden;
+    }
+
+    .animated-line-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background-color: #000;
+      animation: expandHorizontal 3s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+
+    .hero-subtitle {
+      position: relative;
+      z-index: 5;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .hero-photo-wrapper {
+      position: absolute;
+      top: 25px;
+      right: 0;
+      width: 290px;
+      z-index: 10;
+    }
+
+    .hero-photo-box {
+      position: relative;
+      width: 100%;
+      height: 290px;
+      z-index: 2;
+    }
+
+    @keyframes expandHorizontal {
+      0% { width: 0%; left: 0; }
+      50% { width: 100%; left: 0; }
+      100% { width: 0%; left: 100%; }
+    }
+
+    .slide-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-gradient);
+      color: #000;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      box-shadow: 0 4px 14px var(--glow-yellow);
+    }
+
+    .slide-title {
+      font-size: 2.1rem;
+      font-weight: 900;
+      margin-bottom: 30px;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .section-badge-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #111827;
+      color: #FFF;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 10px;
+      margin-bottom: 24px;
+      border-left: 4px solid #F59E0B;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .section-badge-title:hover {
+      transform: translateY(-2px);
+    }
+
+    /* TIMELINE REDESIGN: ULTRA PREMIUM & ANIMATED */
+    .timeline-container {
+      position: relative;
+      padding-left: 35px;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 15px;
+      bottom: 15px;
+      width: 4px;
+      background: linear-gradient(180deg, #111827 0%, #F59E0B 50%, #D97706 100%);
+      background-size: 100% 200%;
+      animation: timelineShimmer 4s ease infinite;
+      border-radius: 4px;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+    }
+
+    @keyframes timelineShimmer {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 0% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    .pro-card {
+      position: relative;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      padding: 22px;
+      border-radius: 16px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 22px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      cursor: pointer;
+    }
+
+    .pro-card:hover {
+      transform: translateY(-4px) translateX(3px);
+      background: #FFFFFF;
+      border-color: #F59E0B;
+      box-shadow: 0 16px 32px rgba(245, 158, 11, 0.2);
+    }
+
+    .pro-card::before {
+      content: '';
+      position: absolute;
+      left: -35px;
+      top: 24px;
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, #111827 0%, #374151 100%);
+      border: 3px solid #F59E0B;
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.2), 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 2;
+      animation: pulseNode 3s infinite ease-in-out;
+    }
+
+    @keyframes pulseNode {
+      0%, 100% {
+        box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2), 0 4px 10px rgba(0,0,0,0.2);
+      }
+      50% {
+        box-shadow: 0 0 0 8px rgba(245, 158, 11, 0.4), 0 4px 15px rgba(245, 158, 11, 0.4);
+      }
+    }
+
+    .pro-card:hover::before {
+      background: var(--accent-gradient);
+      border-color: #111827;
+      transform: scale(1.35) rotate(180deg);
+      box-shadow: 0 0 18px var(--glow-bright), 0 0 0 6px rgba(245, 158, 11, 0.3);
+      animation: none;
+    }
+
+    .card-header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+      gap: 10px;
+    }
+
+    .pro-card h4 {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: -0.2px;
+      line-height: 1.3;
+    }
+
+    .tag-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #92400E;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      white-space: nowrap;
+    }
+
+    .pro-card .sub-title {
+      font-size: 0.85rem;
+      color: #B45309;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .pro-card ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .pro-card ul li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .pro-card ul li::before {
+      content: '•';
+      position: absolute;
+      left: 2px;
+      color: #F59E0B;
+      font-size: 1.1rem;
+      line-height: 1;
+      top: 0px;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .badge-about {
+      background: var(--accent-gradient);
+      color: #000;
+      font-size: 1.6rem;
+      font-weight: 800;
+      padding: 8px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: -5px 0 0 #000, 0 6px 15px rgba(245, 158, 11, 0.3);
+      margin-bottom: 12px;
+    }
+
+    .about-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .about-desc {
+      line-height: 1.75;
+      color: #1F2937;
+      font-size: 0.92rem;
+      text-align: justify;
+    }
+
+    .about-right {
+      position: relative;
+      padding: 10px 10px 20px 10px;
+    }
+
+    .about-accent-box {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      width: 100px;
+      height: 60px;
+      background: var(--accent-gradient);
+      border-radius: 12px;
+      z-index: 1;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    }
+
+    .img-wrapper {
+      border-radius: 14px;
+      margin-bottom: 20px;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+
+    .slide-img {
+      width: 100%;
+      display: block;
+    }
+
+    .grid-4-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .social-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border: 2px solid transparent;
+      aspect-ratio: 9 / 16;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .social-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .social-card:hover {
+      transform: translateY(-6px);
+      border-color: #F59E0B;
+      box-shadow: 0 12px 28px var(--glow-yellow);
+    }
+
+    .social-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .grid-gallery-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      aspect-ratio: 1 / 1;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      border-color: #F59E0B;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .card-box {
+      background: rgba(255, 255, 255, 0.75);
+      padding: 22px;
+      border-radius: 12px;
+      border-left: 5px solid #F59E0B;
+    }
+
+    .card-box h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #B45309;
+    }
+
+    .card-box ul {
+      padding-left: 16px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .badge-container {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(245, 158, 11, 0.15);
+      color: #92400E;
+      border: 1px solid #F59E0B;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* CSS HALAMAN 7: ULTRA PREMIUM & ELEGANT */
+    .contact-slide-container {
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5px;
+      overflow: hidden;
+    }
+
+    .ambient-glow-1 {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 180px;
+      height: 180px;
+      background: rgba(245, 158, 11, 0.25);
+      filter: blur(50px);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .ambient-glow-2 {
+      position: absolute;
+      bottom: 10%;
+      right: 10%;
+      width: 200px;
+      height: 200px;
+      background: rgba(217, 119, 6, 0.2);
+      filter: blur(60px);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .contact-glass-card {
+      position: relative;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      padding: 35px 30px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .contact-glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 70px rgba(245, 158, 11, 0.15), inset 0 1px 2px rgba(255, 255, 255, 1);
+    }
+
+    .contact-header-content {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-main-title {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: #111827;
+      line-height: 1.05;
+    }
+
+    .contact-highlight-box {
+      display: inline-block;
+      background: var(--accent-gradient);
+      padding: 0px 15px;
+      border-radius: 10px;
+      color: #000;
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+      transform: rotate(-1.5deg);
+    }
+
+    .contact-sub-tagline {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      max-width: 550px;
+      line-height: 1.5;
+    }
+
+    .abstract-badge-decoration {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      z-index: 12;
+    }
+
+    .dot-pulse {
+      width: 10px;
+      height: 10px;
+      background-color: #F59E0B;
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--glow-bright);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    .dot-pulse:nth-child(2) { animation-delay: 0.4s; background-color: #D97706; }
+    .dot-pulse:nth-child(3) { animation-delay: 0.8s; background-color: #111827; }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(0.8); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    .contact-info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-start;
+      border-top: 2px dashed rgba(0, 0, 0, 0.08);
+      padding-top: 22px;
+    }
+
+    .contact-subtitle-text {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #374151;
+      letter-spacing: -0.2px;
+    }
+
+    .contact-badges-wrapper {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #111827;
+      color: #FFF;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      border: 2px solid rgba(245, 158, 11, 0.6);
+      transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+      min-width: 240px;
+      justify-content: center;
+    }
+
+    .contact-pill::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .contact-pill:hover::before {
+      left: 100%;
+    }
+
+    .contact-pill:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 30px var(--glow-bright);
+      background: #000;
+      color: #F59E0B;
+      border-color: #FFF;
+    }
+
+    .contact-pill span.icon-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      color: #000;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+    }
+
+    /* MEDIA QUERIES UNTUK HP PORTRAIT */
+    @media (max-width: 820px) {
+      body {
+        padding: 15px 10px 60px 10px;
+      }
+
+      .top-navbar {
+        padding: 8px 14px;
+        margin-bottom: 20px;
+        border-radius: 16px;
+      }
+
+      .nav-brand-text {
+        font-size: 1rem;
+      }
+
+      .nav-brand-badge {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+      }
+
+      .nav-menu {
+        gap: 3px;
+        padding: 3px;
+      }
+
+      .nav-menu li a {
+        font-size: 0.72rem;
+        padding: 5px 10px;
+      }
+
+      .portfolio-container {
+        gap: 25px;
+      }
+
+      .slide {
+        padding: 25px 20px;
+        border-radius: 18px;
+      }
+
+      /* KHUSUS HALAMAN 1 DI HP: FOTO POSISINYA DI TENGAH (CENTER) & PAS */
+      .slide-1-container {
+        min-height: auto;
+        padding-top: 0;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-text-content {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .hero-badge-group {
+        display: inline-block;
+      }
+
+      .animated-line-container {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-photo-wrapper {
+        position: relative;
+        top: unset;
+        right: unset;
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-width: 240px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-photo-box {
+        height: 240px;
+      }
+
+      .grid-2, .about-layout {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .grid-4-cols {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .grid-gallery-6 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .hero-title-main {
+        font-size: 3rem;
+        margin-bottom: 12px;
+      }
+
+      .hero-badge-text {
+        font-size: 1.5rem;
+      }
+
+      .slide-title {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+      }
+
+      .badge-about {
+        font-size: 1.3rem;
+        padding: 6px 16px;
+      }
+
+      .contact-main-title {
+        font-size: 2.2rem;
+      }
+
+      .contact-glass-card {
+        padding: 25px 20px;
+      }
+
+      .contact-pill {
+        min-width: 100%;
+        justify-content: flex-start;
+        padding: 12px 16px;
+      }
+
+      .abstract-badge-decoration {
+        top: 20px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TASKBAR / NAVBAR ATAS -->
+  <nav class="top-navbar" id="top-nav">
+    <a href="#slide-home" class="nav-brand">
+      <div class="nav-brand-badge">A</div>
+      <span class="nav-brand-text">Ariel</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="#slide-home">Home</a></li>
+      <li><a href="#slide-about">About</a></li>
+      <li><a href="#slide-contact">Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- TOMBOL SCROLL TO TOP -->
+  <button class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()" title="Kembali ke atas">↑</button>
+
+<div class="portfolio-container">
+
+  <!-- SLIDE 1 -->
+  <section class="slide" id="slide-home">
+    <div class="slide-1-container">
+      <div class="hero-text-content">
+        <div class="hero-badge-group">
+          <div class="hero-badge-bg"></div>
+          <div class="hero-badge-text">Sekilas</div>
+        </div>
+        <h1 class="hero-title-main">Portofolio</h1>
+      </div>
+      <div class="animated-line-container">
+        <div class="animated-line-bar"></div>
+      </div>
+      <div class="hero-subtitle">Profile & Gambaran Pengalaman</div>
+
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo-box interactive-photo">
+          <img src="https://i.imghippo.com/files/ZFl1180oE.jpe" alt="Ariel Putra Az Zikra">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 -->
+  <section class="slide" id="slide-about">
+    <div class="about-layout">
+      <div class="about-left animate-slide-left">
+        <div class="badge-about">Hai Saya Ariel</div>
+        <h2 class="about-title">Perkenalan tentang saya</h2>
+        <p class="about-desc">
+          Nama saya Ariel Putra Az Zikra, mahasiswa Program Studi Bisnis Digital Universitas Tangerang Raya yang memiliki minat pada bidang Social Media Management, Content Creation, dan Digital Marketing. Memiliki pengalaman dalam mengelola akun media sosial, membuat konten untuk media sosial, serta mengikuti perkembangan tren digital. Saya juga memiliki ketertarikan dalam mengedit foto dan membuat desain sederhana untuk kebutuhan media sosial. Memiliki ketelitian dalam bekerja dan semangat untuk terus belajar serta mengembangkan kemampuan di bidang media sosial.
+        </p>
+      </div>
+      <div class="about-right">
+        <div class="interactive-photo" style="height: 320px; z-index: 2;">
+          <img src="https://i.imghippo.com/files/ZFl1180oE.jpe" alt="Foto Profil Ariel Putra Az Zikra">
+        </div>
+        <div class="about-accent-box"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 (EXPERIENCES & EDUCATION) -->
+  <section class="slide" id="slide-latar">
+    <div class="slide-header">
+      <span>✦</span> Latar Belakang
+    </div>
+    <h2 class="slide-title">Pengalaman & Pendidikan</h2>
+
+    <div class="grid-2">
+      <!-- Kolom Kiri: Pengalaman -->
+      <div>
+        <div class="section-badge-title">
+          <span>💼</span> Pengalaman Relevan
+        </div>
+        <div class="timeline-container">
+          
+          <div class="pro-card">
+            <div class="card-header-flex">
+              <h4>CONTENT CREATOR</h4>
+              <span class="tag-badge">Project</span>
+            </div>
+            <div class="sub-title">Personal Project</div>
+            <ul>
+              <li>Mengelola akun TikTok dan Instagram.</li>
+              <li>Membuat dan mengedit konten untuk TikTok dan Instagram.</li>
+              <li>Mengikuti serta melakukan riset tren media sosial sebagai referensi pembuatan konten.</li>
+            </ul>
+          </div>
+
+          <div class="pro-card">
+            <div class="card-header-flex">
+              <h4>THUMBNAIL DESIGNER</h4>
+              <span class="tag-badge">Freelance</span>
+            </div>
+            <div class="sub-title">Content Creator Gaming</div>
+            <ul>
+              <li>Mendesain thumbnail YouTube untuk konten kreator gaming.</li>
+              <li>Menyesuaikan desain sesuai tema dan kebutuhan konten.</li>
+              <li>Menyelesaikan desain sesuai permintaan klien.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Kolom Kanan: Pendidikan & Organisasi -->
+      <div>
+        <div class="section-badge-title">
+          <span>🎓</span> Pendidikan
+        </div>
+        <div class="timeline-container">
+          
+          <div class="pro-card">
+            <div class="card-header-flex">
+              <h4>Universitas Tangerang Raya</h4>
+              <span class="tag-badge">Aktif</span>
+            </div>
+            <div class="sub-title">S1 – Bisnis Digital</div>
+            <ul>
+              <li>Fokus pada Digital Marketing, E-Commerce, dan Social Media Strategy.</li>
+            </ul>
+          </div>
+
+          <div class="pro-card">
+            <div class="card-header-flex">
+              <h4>SMA Negeri 6 Kab. Tangerang</h4>
+              <span class="tag-badge">Alumni</span>
+            </div>
+            <div class="sub-title">Jurusan Ilmu Pengetahuan Sosial (IPS)</div>
+            <ul>
+              <li>Mempelajari dasar-dasar ilmu sosial, sosiologi, serta ekonomi.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="section-badge-title" style="margin-top: 15px;">
+          <span>👥</span> Organisasi
+        </div>
+        <div class="timeline-container">
+          
+          <div class="pro-card">
+            <div class="card-header-flex">
+              <h4>Himpunan Mahasiswa Bisnis Digital</h4>
+              <span class="tag-badge">Pengurus</span>
+            </div>
+            <div class="sub-title">Sekretaris Divisi Kreatif & Informatif</div>
+            <ul>
+              <li>Berkontribusi dalam pembuatan dan pengeditan konten visual serta mendukung dokumentasi dan publikasi kegiatan himpunan.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 -->
+  <section class="slide" id="slide-portofolio">
+    <div class="slide-header">
+      <span>✦</span> Portofolio Akun
+    </div>
+    <h2 class="slide-title" style="margin-bottom: 20px;">Akun Media Sosial yang Pernah Saya Kelola</h2>
+    <div class="grid-4-cols">
+      <div class="social-card">
+        <img src="https://i.imghippo.com/files/bRrv8500DBE.jpeg" alt="Chavefootball">
+      </div>
+      <div class="social-card">
+        <img src="https://i.imghippo.com/files/tLN7038DjI.jpeg" alt="I'm Chave TikTok">
+      </div>
+      <div class="social-card">
+        <img src="https://i.imghippo.com/files/dCXz3306iw.jpeg" alt="Bisnis Digital Untara">
+      </div>
+      <div class="social-card">
+        <img src="https://i.imghippo.com/files/ut2393NP.jpeg" alt="HIMA Bisnis Digital Untara">
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 -->
+  <section class="slide" id="slide-desain">
+    <div class="slide-header">Recap Desain</div>
+    <br>
+    <h2 class="slide-title">Showcase Desain Grafis & Visual</h2>
+    <div class="img-wrapper">
+      <img src="5.jpg" alt="Recap Desain Header" class="slide-img">
+    </div>
+    <div class="grid-gallery-6">
+      <div class="gallery-item"><img src="desain1.jpg" alt="Hasil Desain 1"></div>
+      <div class="gallery-item"><img src="desain2.jpg" alt="Hasil Desain 2"></div>
+      <div class="gallery-item"><img src="desain3.jpg" alt="Hasil Desain 3"></div>
+      <div class="gallery-item"><img src="desain4.jpg" alt="Hasil Desain 4"></div>
+      <div class="gallery-item"><img src="desain5.jpg" alt="Hasil Desain 5"></div>
+      <div class="gallery-item"><img src="desain6.jpg" alt="Hasil Desain 6"></div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7 (UPDATE CONTACT BUTTON) -->
+  <section class="slide" id="slide-contact">
+    <div class="contact-slide-container">
+      
+      <div class="ambient-glow-1"></div>
+      <div class="ambient-glow-2"></div>
+
+      <div class="contact-glass-card">
+        
+        <div class="abstract-badge-decoration">
+          <div class="dot-pulse"></div>
+          <div class="dot-pulse"></div>
+          <div class="dot-pulse"></div>
+        </div>
+
+        <div class="contact-header-content">
+          <h1 class="contact-main-title">
+            Terhubung<br>
+            dengan <span class="contact-highlight-box">saya</span>
+          </h1>
+          <p class="contact-sub-tagline">
+            Tertarik untuk berkolaborasi, mendiskusikan project, atau terhubung lebih lanjut? Jangan ragu untuk menghubungi saya melalui kontak di bawah ini.
+          </p>
+        </div>
+
+        <div class="contact-info-section">
+          <div class="contact-subtitle-text">Informasi yang bisa dihubungi:</div>
+          <div class="contact-badges-wrapper">
+            <!-- TOMBOL WHATSAPP -->
+            <a href="https://wa.me/6281221665406?text=Halo%20Ariel." 
+               class="contact-pill" 
+               target="_blank">
+              <span class="icon-circle">📞</span> 081221665406
+            </a>
+
+            <a href="mailto:arielputraazzikrak@gmail.com" class="contact-pill">
+              <span class="icon-circle">✉</span> arielputraazzikrak@gmail.com
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+  <script>
+    // Script untuk tombol Scroll to Top
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+    window.onscroll = function() {
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollTopBtn.classList.add("show");
+      } else {
+        scrollTopBtn.classList.remove("show");
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</body>
+</html>
